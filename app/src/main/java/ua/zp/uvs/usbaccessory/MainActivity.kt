@@ -81,6 +81,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun listenHost() {
         val intent = intent
+        mAccessory?.let { onAccessoryDetached(it) }
         if (intent.action == UsbManager.ACTION_USB_ACCESSORY_ATTACHED) {
             val accessory =
                 intent.getParcelableExtra<Parcelable>(UsbManager.EXTRA_ACCESSORY) as UsbAccessory?
@@ -89,7 +90,6 @@ class MainActivity : AppCompatActivity() {
             val accessories = mUsbManager.accessoryList
             if (accessories != null) {
                 for (accessory in accessories) {
-                    onAccessoryDetached(accessory)
                     onAccessoryAttached(accessory)
                 }
             }
