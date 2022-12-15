@@ -218,7 +218,8 @@ class MainActivity : AppCompatActivity() {
 //                publishProgress(readName(inputstreams[0]))
                 val buffer = ByteArray(16384)
                 val size = mTransport?.ioRead(buffer,0, buffer.size)
-                publishProgress(size.toString())
+                val stringRead = String(buffer)
+                publishProgress(stringRead)
             } catch (e: Exception) {
                 publishProgress(e.toString())
             }
